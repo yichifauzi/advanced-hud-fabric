@@ -7,11 +7,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(InGameHud.class)
@@ -25,11 +28,7 @@ public class InGameHudMixin {
         if (!client.options.hudHidden && config.enabled && config.textAlpha > 3 && AdvancedHudMod.SHOW_HUD_OVERLAY && client.player != null) {
             double guiScale = client.getWindow().getScaleFactor();
 
-            List<String> textLines = List.of(
-                    config.fps + ((MinecraftClientMixin) client).getCurrentFPS(),
-                    config.coordinates + Math.round(client.player.getX()) + " " + Math.round(client.player.getY()) + " " + Math.round(client.player.getZ()),
-                    config.ping + Utils.getLocalPing()
-            );
+            List<String> textLines = getStrings(config, client);
 
             // Prevent Advanced-HUD to render outside screenspace
             int maxTextPosX = client.getWindow().getScaledWidth() - client.textRenderer.getWidth(this.getLongestString(textLines));
@@ -47,6 +46,27 @@ public class InGameHudMixin {
         }
     }
 
+    @Unique
+    @NotNull
+    private static List<String> getStrings(AdvancedHudConfig config, MinecraftClient client) {
+        List<String> textLines = new ArrayList<>();
+
+        if (config.enableFpsHud) {
+            textLines.add(config.fps + ((MinecraftClientMixin) client).getCurrentFPS());
+        }
+
+        if (config.enableCoordinatesHud) {
+            assert client.player != null;
+            textLines.add(config.coordinates + Math.round(client.player.getX()) + " " + Math.round(client.player.getY()) + " " + Math.round(client.player.getZ()));
+        }
+
+        if (config.enablePingHud) {
+            textLines.add(config.ping + Utils.getLocalPing());
+        }
+        return textLines;
+    }
+
+    @Unique
     private String getLongestString(List<String> textLines) {
         return textLines
                 .stream()

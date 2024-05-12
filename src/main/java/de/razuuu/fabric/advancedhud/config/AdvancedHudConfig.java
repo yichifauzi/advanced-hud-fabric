@@ -25,8 +25,16 @@ public class AdvancedHudConfig implements ConfigData {
 
     public boolean holdKeyToShowFps = false;
 
+    public boolean enableFpsHud = true;
+
     public String fps = "FPS: ";
+
+    public boolean enableCoordinatesHud = true;
+
     public String coordinates = "Coordinates: ";
+
+    public boolean enablePingHud = true;
+
     public String ping = "Ping: ";
 
 }
