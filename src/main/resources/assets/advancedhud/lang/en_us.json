@@ -11,7 +11,10 @@
     "key.advancedhud.category": "Advanced-HUD",
     "key.advancedhud.toggleFpsOverlay": "Toggle HUD overlay",
 
+    "text.autoconfig.advancedhud.option.enableFpsHud": "Show FPS",
     "text.autoconfig.advancedhud.option.fps": "FPS",
+    "text.autoconfig.advancedhud.option.enableCoordinatesHud": "Show Coordinates",
     "text.autoconfig.advancedhud.option.coordinates": "Coordinates",
+    "text.autoconfig.advancedhud.option.enablePingHud": "Show Ping",
     "text.autoconfig.advancedhud.option.ping": "Ping"
 }

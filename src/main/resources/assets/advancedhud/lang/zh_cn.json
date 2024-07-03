@@ -11,7 +11,10 @@
     "key.advancedhud.category": "Advanced-HUD",
     "key.advancedhud.toggleFpsOverlay": "切换 HUD 叠加层",
 
+    "text.autoconfig.advancedhud.option.enableFpsHud": "顯示 FPS",
     "text.autoconfig.advancedhud.option.fps": "FPS",
+    "text.autoconfig.advancedhud.option.enableCooperativesHud": "顯示 坐标",
     "text.autoconfig.advancedhud.option.coordinates": "坐标",
+    "text.autoconfig.advancedhud.option.enablePingHud": "顯示 Ping",
     "text.autoconfig.advancedhud.option.ping": "Ping"
 }
